@@ -1,52 +1,23 @@
 <!DOCTYPE html>
-<html> 
+<html ng-app="myApp"> 
   <head>
     <title></title>
- <!-- THESE TWO VERSIONS BELOW MUST MATCH (good thing bower will catch that for us, but be aware if you are using CDN's)!!! -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="static/CSS/style.css">
     <script src="angular/angular.js"></script>
     <script src="angular-route/angular-route.js"></script>
-<script>
-    //  inject the ngRoute dependency in the module.
-    var myApp = angular.module('myApp', ['ngRoute']);
-    //  use the config method to set up routing:
-    myApp.config(function ($routeProvider) {
-      $routeProvider
-        .when('/',{
-            templateUrl: 'partials/customize.html',
-        })
-        .when('/list',{
-            templateUrl: 'partials/list.html'
-        })
-        .otherwise({
-          redirectTo: '/'
-        });
-    });
-    //  build the controllers
-    myApp.controller('usersController', function ($scope) {
-      $scope.users = [];
+    <script src = 'main.js'></script>
 
-      $scope.addUser= function() {
-        $scope.users.push($scope.newUser);
-        $scope.newUser = {};
-      }
-
-      $scope.removeUser = function(user) {
-        var index = $scope.users.indexOf(user);
-        $scope.users.splice(index,1);
-      }
-
-
-    });
-    // myApp.controller('view2Controller', function ($scope) {
-    //   $scope.message = 'We are using another controller';
-    // });
-    </script>
   </head>
   <body>
-    <div ng-app='myApp'>
-        <a href="#/">Customize Users</a> | <a href="#/list">User List</a>
-        <div ng-view="">
-        </div>
-    </div>
+    <a href="#/customize">Customize Users</a> <a href="#/list">User List</a>
+   <div ng-view=""></div>
   </body>
 </html>
