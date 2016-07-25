@@ -4,7 +4,7 @@ var myApp = angular.module("myApp", ["ngRoute"]);
 myApp.config(function($routeProvider){
    $routeProvider
       .when("/users", {
-         templateUrl: "static/partials/customize.html"
+         templateUrl: "static/partials/users.html"
       })
       .when("/list", {
          templateUrl: "static/partials/list.html"
@@ -27,19 +27,19 @@ myApp.factory("userFactory",[function(){
    }
 
    //Add new user to the list
-   factory.create = function(user){
+   factory.addUser = function(user){
       users.push(user);
    }
 
    //Remove the user from the list
-   factory.delete = function($index){
+   factory.removeUser = function($index){
       users.splice($index, 1);
    }
    return factory;
 }])
 
 //Inject userFactory into each controller
-myApp.controller("CustomizeUsersController", ['$scope', 'userFactory', function($scope, userFactory){
+myApp.controller("usersController", ['$scope', 'userFactory', function($scope, userFactory){
    function setUsers(data){
       $scope.users = data;
       $scope.newUser = {};
@@ -51,19 +51,19 @@ myApp.controller("CustomizeUsersController", ['$scope', 'userFactory', function(
    userFactory.index(setUsers);
 
    //Pass new user info to the factory
-   $scope.create = function(){
-      userFactory.create($scope.newUser)
+   $scope.addUser = function(){
+      userFactory.addUser($scope.newUser)
       $scope.newUser = {}; //Reset our form
    }
 
    //Delegate deleting user to the factory
-   $scope.delete = function($index){
+   $scope.removeUser = function($index){
       userFactory.delete($index);
    }
 }])
 
 //Inject userFactory into each controller
-app.controller("usersController",['$scope', 'userFactory', function($scope, userFactory){
+myApp.controller("listController",['$scope', 'userFactory', function($scope, userFactory){
    function setUsers(data){
       $scope.users = data;
    }
