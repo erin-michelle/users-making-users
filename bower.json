@@ -4,14 +4,13 @@
   "authors": [
     "erin fitzgerald <erin.m.traylor@gmail.com>"
   ],
-  "description": "practice creating angular routes",
+  "description": "Assignment utilizing AngularJS routes. Users can create, delete, filter, and view users.",
   "main": "",
-  "license": "MIT",
+  "license": "",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "./client/vendor/assets/bower_components",
     "test",
     "tests"
   ],
